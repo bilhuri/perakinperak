@@ -37,13 +37,9 @@
                     },
                     animation: {
                         'shimmer': 'shimmer 2s linear infinite',
-                        'fade-in': 'fadeIn 0.6s ease-out',
-                        'slide-up': 'slideUp 0.8s ease-out',
                     },
                     keyframes: {
                         shimmer: { '0%': { backgroundPosition: '-1000px 0' }, '100%': { backgroundPosition: '1000px 0' } },
-                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-                        slideUp: { '0%': { opacity: '0', transform: 'translateY(30px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
                     }
                 }
             }
@@ -233,10 +229,12 @@
 
         // --- CORE FUNCTIONS ---
         async function fetchData(url) {
+            console.log("Fetching data from:", url);
             try {
                 const response = await fetch(url);
-                if (!response.ok) throw new Error('Network response was not ok.');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.text();
+                console.log("Raw CSV data received:", data);
                 return data;
             } catch (error) {
                 console.error('Fetch error:', error);
@@ -246,18 +244,39 @@
         }
 
         function parseCSV(csvText) {
+            console.log("Parsing CSV...");
             const lines = csvText.trim().split('\n');
-            const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
-            return lines.slice(1).map(line => {
-                const values = line.split(',').map(v => v.trim().replace(/"/g, ''));
+            const headers = lines[0].match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g).map(h => h.trim().replace(/"/g, ''));
+            console.log("Parsed Headers:", headers);
+            
+            const rows = lines.slice(1);
+            const parsedData = rows.map(line => {
+                const values = [];
+                let current = '';
+                let inQuotes = false;
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        values.push(current.trim());
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                values.push(current.trim()); // Add the last value
+
                 const obj = {};
                 headers.forEach((header, index) => {
-                    obj[header] = values[index];
+                    obj[header.trim()] = values[index] ? values[index].trim().replace(/"/g, '') : '';
                 });
-                obj.price = parseInt(obj.price, 10);
-                obj.weight = parseFloat(obj.weight);
+                obj.price = parseInt(obj.price, 10) || 0;
+                obj.weight = parseFloat(obj.weight) || 0;
                 return obj;
             });
+            console.log("Successfully parsed data:", parsedData);
+            return parsedData;
         }
         
         function formatRupiah(amount) {
@@ -266,15 +285,20 @@
         
         // --- RENDERING FUNCTIONS ---
         function renderHeroPrice(products) {
-            const granules = products.filter(p => p.model.toLowerCase() === 'granule');
+            console.log("Rendering hero price...");
+            const granules = products.filter(p => p.model && p.model.toLowerCase() === 'granule');
             if (granules.length > 0) {
                 const cheapest = granules.reduce((min, p) => p.price < min.price ? p : min);
                 heroPriceEl.classList.remove('skeleton');
                 heroPriceEl.textContent = formatRupiah(cheapest.price);
+                console.log("Hero price set to:", formatRupiah(cheapest.price));
+            } else {
+                console.log("No 'Granule' products found for hero price.");
             }
         }
 
         function renderProducts(products) {
+            console.log("Rendering products...");
             productGridEl.innerHTML = '';
             if (products.length === 0) {
                 productGridEl.innerHTML = '<p class="col-span-full text-center text-dove-grey">Tidak ada produk yang ditemukan.</p>';
@@ -294,7 +318,7 @@
         }
 
         function populateCategoryFilter(products) {
-            const categories = [...new Set(products.map(p => p.category))];
+            const categories = [...new Set(products.map(p => p.category).filter(Boolean))];
             filterCategoryEl.innerHTML = '<option value="">Semua Kategori</option>' + 
                 categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
         }
@@ -309,7 +333,7 @@
             document.getElementById('modal-details').textContent = `${product.weight}g / ${product.purity} | ${product.brand}`;
             document.getElementById('modal-description').textContent = product.description;
 
-            const isReady = product.availability.toLowerCase() === 'ready';
+            const isReady = product.availability && product.availability.toLowerCase() === 'ready';
             const message = isReady 
                 ? `Halo Perakin, saya tertarik dengan produk:\n**${product.name}**\nHarga: ${formatRupiah(product.price)}\n\nApakah masih tersedia?`
                 : `Halo Perakin, saya tertarik dengan produk:\n**${product.name}**\n\nStatusnya tidak tersedia. Mohon info kapan kembali ada.`;
@@ -348,13 +372,15 @@
             const katalogCSV = await fetchData(KATALOG_URL);
             if (katalogCSV) {
                 allProducts = parseCSV(katalogCSV);
-                filteredProducts = [...allProducts];
-                
-                loadingMessageEl.style.display = 'none';
-                
-                renderHeroPrice(allProducts);
-                populateCategoryFilter(allProducts);
-                renderProducts(filteredProducts);
+                if(allProducts.length > 0) {
+                    filteredProducts = [...allProducts];
+                    loadingMessageEl.style.display = 'none';
+                    renderHeroPrice(allProducts);
+                    populateCategoryFilter(allProducts);
+                    renderProducts(filteredProducts);
+                } else {
+                    loadingMessageEl.textContent = 'Tidak ada produk yang ditemukan di data.';
+                }
             }
         }
 
