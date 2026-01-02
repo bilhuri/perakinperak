@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERAKIN | Semua Bisa Miliki Perak</title>
+    <meta name="description" content="Investasi perak fisik murni 999.9 dengan harga transparan. Katalog real-time, buyback guarantee, dan pengiriman aman.">
+    
+    <!-- Favicon & Theme -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="theme-color" content="#0A0A0A">
+
+    <!-- Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'matte-black': '#0A0A0A',
+                        'charcoal': '#1A1A1A',
+                        'silver': '#C0C0C0',
+                        'silver-dark': '#8E8E8E',
+                        'dove-grey': '#4A4A4A',
+                    },
+                    fontFamily: {
+                        'brand': ['"Playfair Display"', 'serif'],
+                        'body': ['"Poppins"', 'sans-serif'],
+                    },
+                    animation: {
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                    },
+                    keyframes: {
+                        shimmer: { '0%': { backgroundPosition: '-1000px 0' }, '100%': { backgroundPosition: '1000px 0' } },
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        slideUp: { '0%': { opacity: '0', transform: 'translateY(30px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --brand-gradient: linear-gradient(to right, #C0C0C0 0%, #E5E5E5 50%, #8E8E8E 100%);
+        }
+
+        body { background-color: #0A0A0A; color: #E5E5E5; }
+        
+        .brand-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .premium-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .premium-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(192, 192, 192, 0.3);
+            box-shadow: 0 20px 40px rgba(192, 192, 192, 0.1);
+        }
+        
+        .skeleton {
+            background: linear-gradient(90deg, #1A1A1A 25%, rgba(255,255,255,0.05) 50%, #1A1A1A 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1A1A1A; }
+        ::-webkit-scrollbar-thumb { background: #4A4A4A; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8E8E8E; }
+    </style>
+</head>
+<body class="font-body antialiased selection:bg-silver selection:text-matte-black">
+
+    <!-- Navigation -->
+    <header class="fixed top-0 w-full z-50 glass-morphism py-4 px-6 md:px-12 transition-all duration-300">
+        <nav class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="flex flex-col group" aria-label="PERAKIN Home">
+                <h1 class="text-3xl md:text-4xl brand-text leading-none transition-all duration-300 group-hover:scale-105">PERAKIN</h1>
+                <span class="text-[10px] tracking-[0.4em] text-silver-dark uppercase font-semibold mt-1">Semua Bisa Miliki Perak</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#katalog" class="text-xs tracking-widest uppercase text-silver-dark hover:text-silver transition-colors">Katalog</a>
+                <a href="edukasi.html" class="text-xs tracking-widest uppercase text-silver-dark hover:text-silver transition-colors">Edukasi</a>
+                <a href="kalkulator.html" class="text-xs tracking-widest uppercase text-silver-dark hover:text-silver transition-colors">Kalkulator</a>
+                <a href="https://wa.me/6289512241234" target="_blank" rel="noopener noreferrer" class="px-6 py-2.5 bg-silver text-matte-black text-xs tracking-widest font-bold rounded-full hover:bg-dove-grey transition-all duration-300 hover:shadow-lg hover:shadow-silver/25">
+                    Hubungi Kami
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center px-6 pt-24 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-matte-black/50 to-matte-black"></div>
+            <div class="relative z-10 max-w-5xl mx-auto text-center">
+                <h2 class="text-6xl md:text-8xl lg:text-9xl brand-text mb-6">PERAKIN</h2>
+                <p class="text-lg md:text-xl text-dove-grey font-light mb-8">Aset Safe Haven untuk Masa Depan Anda</p>
+                <div class="flex flex-col items-center gap-4">
+                    <p class="text-sm text-silver-dark">Harga Mulai Dari</p>
+                    <p id="hero-price" class="text-4xl md:text-5xl font-semibold text-white skeleton h-12 w-48 mx-auto rounded"></p>
+                </div>
+                <a href="#katalog" class="inline-block mt-12 px-10 py-4 glass-morphism text-white text-xs tracking-widest font-semibold rounded-full hover:bg-white/10 transition-all duration-300">
+                    Jelajahi Katalog
+                </a>
+            </div>
+        </section>
+
+        <!-- Katalog Section -->
+        <section id="katalog" class="py-20 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h3 class="text-sm tracking-widest uppercase text-silver-dark font-semibold mb-4">Katalog Produk</h3>
+                    <h2 class="text-4xl md:text-5xl font-brand text-white">Temukan Investasi Anda</h2>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-12 glass-morphism p-4 rounded-xl">
+                    <div class="flex items-center gap-4">
+                        <label for="filter-category" class="text-sm text-silver-dark">Filter:</label>
+                        <select id="filter-category" class="bg-charcoal border border-silver/20 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-silver/50">
+                            <option value="">Semua Kategori</option>
+                        </select>
+                    </div>
+                    <div class="flex gap-2">
+                        <button id="sort-price-asc" class="px-4 py-2 glass-morphism text-xs text-silver-dark hover:text-white rounded-lg transition-all">Harga: Rendah ke Tinggi</button>
+                        <button id="sort-price-desc" class="px-4 py-2 glass-morphism text-xs text-silver-dark hover:text-white rounded-lg transition-all">Harga: Tinggi ke Rendah</button>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="loading-message" class="text-center text-dove-grey">Memuat data produk...</div>
+
+                <!-- Product Grid -->
+                <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Products will be injected here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="fixed inset-0 z-50 p-4 md:p-8 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="absolute inset-0 bg-matte-black/80" onclick="closeModal()"></div>
+        <div class="relative glass-morphism rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-silver-dark hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="flex flex-col md:flex-row gap-8">
+                <img id="modal-image" src="" alt="" class="w-full md:w-1/2 h-80 object-contain rounded-xl bg-charcoal p-4">
+                <div class="flex-1">
+                    <h3 id="modal-name" class="text-2xl font-brand text-white mb-2"></h3>
+                    <p id="modal-details" class="text-sm text-silver-dark mb-4"></p>
+                    <p id="modal-description" class="text-sm text-dove-grey leading-relaxed mb-6"></p>
+                    <div id="modal-actions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="glass-morphism mt-20 py-16 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
+            <div class="md:col-span-2">
+                <h4 class="text-3xl font-brand text-white mb-4">PERAKIN</h4>
+                <p class="text-sm text-dove-grey mb-6 max-w-sm">Platform investasi perak fisik terpercaya, menghubungkan Anda dengan aset safe haven untuk masa depan yang lebih cerah.</p>
+                <div class="flex gap-4 justify-center md:justify-start">
+                    <a href="#" class="w-10 h-10 glass-morphism rounded-full flex items-center justify-center hover:bg-silver/20 transition-all"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="https://wa.me/6289512241234" target="_blank" class="w-10 h-10 glass-morphism rounded-full flex items-center justify-center hover:bg-silver/20 transition-all"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+            <div>
+                <h5 class="text-xs tracking-widest uppercase text-silver-dark font-semibold mb-6">Menu</h5>
+                <ul class="space-y-3 text-sm text-dove-grey">
+                    <li><a href="#katalog" class="hover:text-white transition-colors">Katalog Produk</a></li>
+                    <li><a href="edukasi.html" class="hover:text-white transition-colors">Edukasi</a></li>
+                    <li><a href="kalkulator.html" class="hover:text-white transition-colors">Kalkulator Buyback</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-xs tracking-widest uppercase text-silver-dark font-semibold mb-6">Kontak</h5>
+                <ul class="space-y-3 text-sm text-dove-grey">
+                    <li>WhatsApp: 0895-1224-1234</li>
+                    <li>Banda Aceh, Indonesia</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-silver/10 text-center text-xs text-silver-dark">
+            &copy; 2024 PERAKIN. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        // --- CONFIGURATION ---
+        const KATALOG_URL = 'https://docs.google.com/spreadsheets/d/1lJ9qQktoiBQ_Y7nNb7ox3mICJzFab5UqQ_-U54D0iGg/gviz/tq?tqx=out:csv&sheet=katalog';
+        const WA_NUMBER = '6289512241234';
+        let allProducts = [];
+        let filteredProducts = [];
+
+        // --- DOM ELEMENTS ---
+        const heroPriceEl = document.getElementById('hero-price');
+        const productGridEl = document.getElementById('product-grid');
+        const loadingMessageEl = document.getElementById('loading-message');
+        const filterCategoryEl = document.getElementById('filter-category');
+        const sortPriceAscEl = document.getElementById('sort-price-asc');
+        const sortPriceDescEl = document.getElementById('sort-price-desc');
+
+        // --- CORE FUNCTIONS ---
+        async function fetchData(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Network response was not ok.');
+                const data = await response.text();
+                return data;
+            } catch (error) {
+                console.error('Fetch error:', error);
+                loadingMessageEl.textContent = 'Gagal memuat data. Silakan refresh halaman.';
+                return null;
+            }
+        }
+
+        function parseCSV(csvText) {
+            const lines = csvText.trim().split('\n');
+            const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
+            return lines.slice(1).map(line => {
+                const values = line.split(',').map(v => v.trim().replace(/"/g, ''));
+                const obj = {};
+                headers.forEach((header, index) => {
+                    obj[header] = values[index];
+                });
+                obj.price = parseInt(obj.price, 10);
+                obj.weight = parseFloat(obj.weight);
+                return obj;
+            });
+        }
+        
+        function formatRupiah(amount) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(amount);
+        }
+        
+        // --- RENDERING FUNCTIONS ---
+        function renderHeroPrice(products) {
+            const granules = products.filter(p => p.model.toLowerCase() === 'granule');
+            if (granules.length > 0) {
+                const cheapest = granules.reduce((min, p) => p.price < min.price ? p : min);
+                heroPriceEl.classList.remove('skeleton');
+                heroPriceEl.textContent = formatRupiah(cheapest.price);
+            }
+        }
+
+        function renderProducts(products) {
+            productGridEl.innerHTML = '';
+            if (products.length === 0) {
+                productGridEl.innerHTML = '<p class="col-span-full text-center text-dove-grey">Tidak ada produk yang ditemukan.</p>';
+                return;
+            }
+            productGridEl.innerHTML = products.map(product => `
+                <div class="premium-card glass-morphism p-6 rounded-2xl cursor-pointer group" onclick="openModal('${product.name}')">
+                    <div class="relative mb-4">
+                        <img src="${product.thumbnail}" alt="${product.name}" class="w-full h-48 object-contain rounded-xl bg-charcoal p-4 group-hover:scale-105 transition-transform duration-300">
+                        ${product.label ? `<span class="absolute top-2 right-2 bg-silver text-matte-black text-xs font-bold px-3 py-1 rounded-full">${product.label}</span>` : ''}
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-silver transition-colors">${product.name}</h3>
+                    <p class="text-sm text-silver-dark mb-4">${product.category} - ${product.weight}g</p>
+                    <p class="text-xl font-brand text-silver">${formatRupiah(product.price)}</p>
+                </div>
+            `).join('');
+        }
+
+        function populateCategoryFilter(products) {
+            const categories = [...new Set(products.map(p => p.category))];
+            filterCategoryEl.innerHTML = '<option value="">Semua Kategori</option>' + 
+                categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+        }
+        
+        // --- MODAL & WA ---
+        function openModal(productName) {
+            const product = allProducts.find(p => p.name === productName);
+            if (!product) return;
+
+            document.getElementById('modal-image').src = product.thumbnail;
+            document.getElementById('modal-name').textContent = product.name;
+            document.getElementById('modal-details').textContent = `${product.weight}g / ${product.purity} | ${product.brand}`;
+            document.getElementById('modal-description').textContent = product.description;
+
+            const isReady = product.availability.toLowerCase() === 'ready';
+            const message = isReady 
+                ? `Halo Perakin, saya tertarik dengan produk:\n**${product.name}**\nHarga: ${formatRupiah(product.price)}\n\nApakah masih tersedia?`
+                : `Halo Perakin, saya tertarik dengan produk:\n**${product.name}**\n\nStatusnya tidak tersedia. Mohon info kapan kembali ada.`;
+            
+            document.getElementById('modal-actions').innerHTML = `
+                <a href="https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}" target="_blank" class="w-full py-3 bg-silver text-matte-black font-bold rounded-xl hover:bg-dove-grey transition-all text-center">
+                    ${isReady ? 'Beli via WhatsApp' : 'Tanyakan Detail'}
+                </a>
+            `;
+            
+            document.getElementById('product-modal').classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        // --- FILTER & SORT LOGIC ---
+        function applyFilters() {
+            const selectedCategory = filterCategoryEl.value;
+            filteredProducts = allProducts.filter(product => {
+                return selectedCategory === '' || product.category === selectedCategory;
+            });
+            renderProducts(filteredProducts);
+        }
+
+        function sortProducts(order) {
+            filteredProducts.sort((a, b) => {
+                return order === 'asc' ? a.price - b.price : b.price - a.price;
+            });
+            renderProducts(filteredProducts);
+        }
+
+        // --- INITIALIZATION ---
+        async function init() {
+            const katalogCSV = await fetchData(KATALOG_URL);
+            if (katalogCSV) {
+                allProducts = parseCSV(katalogCSV);
+                filteredProducts = [...allProducts];
+                
+                loadingMessageEl.style.display = 'none';
+                
+                renderHeroPrice(allProducts);
+                populateCategoryFilter(allProducts);
+                renderProducts(filteredProducts);
+            }
+        }
+
+        // --- EVENT LISTENERS ---
+        filterCategoryEl.addEventListener('change', applyFilters);
+        sortPriceAscEl.addEventListener('click', () => sortProducts('asc'));
+        sortPriceDescEl.addEventListener('click', () => sortProducts('desc'));
+        
+        // Start everything
+        document.addEventListener('DOMContentLoaded', init);
+        window.addEventListener('load', () => lucide.createIcons());
+    </script>
+</body>
+</html>
