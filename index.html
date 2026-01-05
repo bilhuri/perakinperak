@@ -1,397 +1,525 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id" class="scroll-smooth" itemscope itemtype="https://schema.org/FinancialService">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PERAKIN | Semua Bisa Miliki Perak</title>
-    <meta name="description" content="Investasi perak fisik murni 999.9 dengan harga transparan. Katalog real-time, buyback guarantee, dan pengiriman aman.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     
-    <!-- Favicon & Theme -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <meta name="theme-color" content="#0A0A0A">
+    <!-- SEO & Metadata Premium -->
+    <title>PERAKIN | Platform Investasi Perak Fisik & Dirham Aceh Terpercaya</title>
+    <meta name="description" content="Investasi perak fisik murni 999.9 dengan harga transparan, buyback guarantee, dan pengiriman aman ke seluruh Indonesia. Aset safe haven untuk masa depan Anda.">
+    <meta name="keywords" content="investasi perak, jual perak fisik, silver bar, dirham aceh, perakin, harga perak hari ini, buyback perak, logam mulia, aset safe haven">
+    
+    <!-- Canonical & Language -->
+    <link rel="canonical" href="https://s.id/perakin/">
+    <meta name="language" content="Indonesian">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="PERAKIN Indonesia">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://perakin.id/">
+    <meta property="og:title" content="PERAKIN | Investasi Perak Fisik & Aset Safe Haven">
+    <meta property="og:description" content="Mulai investasi perak fisik Anda sekarang. Aman, likuid, dan terjangkau mulai dari gramasi terkecil.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/perakin/assets/main/og-image.jpg">
 
-    <!-- Preconnect & Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
-
-    <!-- External Libraries -->
+    <!-- Stylesheets -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'matte-black': '#0A0A0A',
-                        'charcoal': '#1A1A1A',
-                        'silver': '#C0C0C0',
-                        'silver-dark': '#8E8E8E',
-                        'dove-grey': '#4A4A4A',
-                    },
-                    fontFamily: {
-                        'brand': ['"Playfair Display"', 'serif'],
-                        'body': ['"Poppins"', 'sans-serif'],
-                    },
-                    animation: {
-                        'shimmer': 'shimmer 2s linear infinite',
-                    },
-                    keyframes: {
-                        shimmer: { '0%': { backgroundPosition: '-1000px 0' }, '100%': { backgroundPosition: '1000px 0' } },
-                    }
-                }
-            }
-        }
-    </script>
     
     <style>
         :root {
-            --brand-gradient: linear-gradient(to right, #C0C0C0 0%, #E5E5E5 50%, #8E8E8E 100%);
+            --silver-primary: #C0C0C0;
+            --silver-dark: #8E8E8E;
+            --charcoal: #121212;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        body { background-color: #0A0A0A; color: #E5E5E5; }
-        
-        .brand-text {
-            font-family: 'Playfair Display', serif;
-            font-weight: 900;
-            background: var(--brand-gradient);
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--charcoal);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .silver-text {
+            background: linear-gradient(135deg, #FFFFFF 0%, #C0C0C0 50%, #8E8E8E 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
-        .glass-morphism {
-            background: rgba(255, 255, 255, 0.03);
+        .glass-container {
+            background: var(--glass);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
         }
 
-        .premium-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .premium-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(192, 192, 192, 0.3);
-            box-shadow: 0 20px 40px rgba(192, 192, 192, 0.1);
-        }
-        
-        .skeleton {
-            background: linear-gradient(90deg, #1A1A1A 25%, rgba(255,255,255,0.05) 50%, #1A1A1A 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #1A1A1A; }
-        ::-webkit-scrollbar-thumb { background: #4A4A4A; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #8E8E8E; }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--silver-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--charcoal); }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: #444; }
     </style>
 </head>
-<body class="font-body antialiased selection:bg-silver selection:text-matte-black">
-
+<body class="antialiased">
     <!-- Navigation -->
-    <header class="fixed top-0 w-full z-50 glass-morphism py-4 px-6 md:px-12 transition-all duration-300">
-        <nav class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" class="flex flex-col group" aria-label="PERAKIN Home">
-                <h1 class="text-3xl md:text-4xl brand-text leading-none transition-all duration-300 group-hover:scale-105">PERAKIN</h1>
-                <span class="text-[10px] tracking-[0.4em] text-silver-dark uppercase font-semibold mt-1">Semua Bisa Miliki Perak</span>
-            </a>
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#katalog" class="text-xs tracking-widest uppercase text-silver-dark hover:text-silver transition-colors">Katalog</a>
-                <a href="edukasi.html" class="text-xs tracking-widest uppercase text-silver-dark hover:text-silver transition-colors">Edukasi</a>
-                <a href="kalkulator.html" class="text-xs tracking-widest uppercase text-silver-dark hover:text-silver transition-colors">Kalkulator</a>
-                <a href="https://wa.me/6289512241234" target="_blank" rel="noopener noreferrer" class="px-6 py-2.5 bg-silver text-matte-black text-xs tracking-widest font-bold rounded-full hover:bg-dove-grey transition-all duration-300 hover:shadow-lg hover:shadow-silver/25">
-                    Hubungi Kami
+    <nav class="fixed w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass-container px-8 py-4">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-white to-silver-dark flex items-center justify-center">
+                    <span class="text-black font-bold text-xs">PK</span>
+                </div>
+                <span class="font-bold text-xl tracking-tighter silver-text">PERAKIN</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#beranda" class="nav-link">Beranda</a>
+                <a href="katalog.html" class="nav-link">Katalog</a>
+                <a href="#kalkulator" class="nav-link">Kalkulator</a>
+                <a href="#tentang" class="nav-link">Tentang</a>
+                <a href="https://wa.me/628526000000" class="bg-white text-black px-6 py-2.5 rounded-full hover:bg-silver-primary transition duration-300 font-bold">
+                    Hubungi Admin
                 </a>
             </div>
-        </nav>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="relative min-h-screen flex items-center justify-center px-6 pt-24 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-matte-black/50 to-matte-black"></div>
-            <div class="relative z-10 max-w-5xl mx-auto text-center">
-                <h2 class="text-6xl md:text-8xl lg:text-9xl brand-text mb-6">PERAKIN</h2>
-                <p class="text-lg md:text-xl text-dove-grey font-light mb-8">Aset Safe Haven untuk Masa Depan Anda</p>
-                <div class="flex flex-col items-center gap-4">
-                    <p class="text-sm text-silver-dark">Harga Mulai Dari</p>
-                    <p id="hero-price" class="text-4xl md:text-5xl font-semibold text-white skeleton h-12 w-48 mx-auto rounded"></p>
-                </div>
-                <a href="#katalog" class="inline-block mt-12 px-10 py-4 glass-morphism text-white text-xs tracking-widest font-semibold rounded-full hover:bg-white/10 transition-all duration-300">
-                    Jelajahi Katalog
-                </a>
-            </div>
-        </section>
-
-        <!-- Katalog Section -->
-        <section id="katalog" class="py-20 px-6">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16">
-                    <h3 class="text-sm tracking-widest uppercase text-silver-dark font-semibold mb-4">Katalog Produk</h3>
-                    <h2 class="text-4xl md:text-5xl font-brand text-white">Temukan Investasi Anda</h2>
-                </div>
-
-                <!-- Controls -->
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-12 glass-morphism p-4 rounded-xl">
-                    <div class="flex items-center gap-4">
-                        <label for="filter-category" class="text-sm text-silver-dark">Filter:</label>
-                        <select id="filter-category" class="bg-charcoal border border-silver/20 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-silver/50">
-                            <option value="">Semua Kategori</option>
-                        </select>
-                    </div>
-                    <div class="flex gap-2">
-                        <button id="sort-price-asc" class="px-4 py-2 glass-morphism text-xs text-silver-dark hover:text-white rounded-lg transition-all">Harga: Rendah ke Tinggi</button>
-                        <button id="sort-price-desc" class="px-4 py-2 glass-morphism text-xs text-silver-dark hover:text-white rounded-lg transition-all">Harga: Tinggi ke Rendah</button>
-                    </div>
-                </div>
-
-                <!-- Loading State -->
-                <div id="loading-message" class="text-center text-dove-grey">Memuat data produk...</div>
-
-                <!-- Product Grid -->
-                <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    <!-- Products will be injected here -->
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Product Modal -->
-    <div id="product-modal" class="fixed inset-0 z-50 p-4 md:p-8 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="absolute inset-0 bg-matte-black/80" onclick="closeModal()"></div>
-        <div class="relative glass-morphism rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-silver-dark hover:text-white">
-                <i data-lucide="x" class="w-6 h-6"></i>
+            
+            <button class="md:hidden text-white" aria-label="Menu">
+                <i data-lucide="menu"></i>
             </button>
-            <div class="flex flex-col md:flex-row gap-8">
-                <img id="modal-image" src="" alt="" class="w-full md:w-1/2 h-80 object-contain rounded-xl bg-charcoal p-4">
-                <div class="flex-1">
-                    <h3 id="modal-name" class="text-2xl font-brand text-white mb-2"></h3>
-                    <p id="modal-details" class="text-sm text-silver-dark mb-4"></p>
-                    <p id="modal-description" class="text-sm text-dove-grey leading-relaxed mb-6"></p>
-                    <div id="modal-actions"></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="pt-32 pb-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        <span class="text-xs font-medium text-white/70 tracking-widest uppercase">Harga Terupdate Otomatis</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
+                        Amankan Masa Depan dengan <span class="silver-text">Perak Murni</span>
+                    </h1>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed max-w-lg">
+                        Platform terintegrasi untuk jual-beli perak fisik 999.9 dan dirham Aceh. Investasi yang aman, likuid, dan transparan dalam satu genggaman.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="katalog.html" class="flex items-center justify-center space-x-2 bg-white text-black px-8 py-4 rounded-2xl font-bold hover:bg-silver-primary transition duration-300">
+                            <span>Mulai Investasi</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <div class="flex items-center space-x-4 px-6 py-4 rounded-2xl bg-white/5 border border-white/10">
+                            <div class="flex -space-x-3">
+                                <div class="w-10 h-10 rounded-full border-2 border-charcoal bg-gray-600"></div>
+                                <div class="w-10 h-10 rounded-full border-2 border-charcoal bg-gray-500"></div>
+                                <div class="w-10 h-10 rounded-full border-2 border-charcoal bg-gray-400"></div>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold">500+ Investor</p>
+                                <p class="text-xs text-white/40 italic">Telah bergabung</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal delay-200">
+                    <div class="glass-container p-8 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 blur-3xl rounded-full -mr-20 -mt-20"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="flex justify-between items-center mb-10">
+                                <div>
+                                    <p class="text-xs text-white/40 uppercase tracking-widest mb-1 font-bold">Harga Terendah Hari Ini</p>
+                                    <h3 id="minPrice" class="text-3xl font-bold silver-text">Loading...</h3>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xs text-green-500 font-bold">LIVE MARKET</p>
+                                    <p class="text-[10px] text-white/20 italic">Update setiap 5 menit</p>
+                                </div>
+                            </div>
+
+                            <!-- Live Chart Widget -->
+                            <div class="h-64 rounded-xl overflow-hidden mb-6 bg-black/20">
+                                <div class="tradingview-widget-container h-full">
+                                    <div id="tradingview_xag"></div>
+                                    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                    <script type="text/javascript">
+                                    new TradingView.widget({
+                                        "autosize": true,
+                                        "symbol": "OANDA:XAGUSD",
+                                        "interval": "D",
+                                        "timezone": "Asia/Jakarta",
+                                        "theme": "dark",
+                                        "style": "3",
+                                        "locale": "id",
+                                        "enable_publishing": false,
+                                        "hide_top_toolbar": true,
+                                        "hide_legend": true,
+                                        "save_image": false,
+                                        "container_id": "tradingview_xag"
+                                    });
+                                    </script>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-4 rounded-xl bg-white/5 border border-white/5">
+                                    <p class="text-[10px] text-white/40 uppercase mb-1 font-bold italic">Buyback</p>
+                                    <p class="text-sm font-bold text-green-400">Jaminan Likuiditas</p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-white/5 border border-white/5">
+                                    <p class="text-[10px] text-white/40 uppercase mb-1 font-bold italic">Sertifikasi</p>
+                                    <p class="text-sm font-bold">Murni 999.9</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Smart Finder Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto glass-container p-10 reveal">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-2 silver-text">Smart Investment Finder</h2>
+                <p class="text-white/50 text-sm">Berapa budget investasi yang Anda siapkan hari ini?</p>
+            </div>
+            
+            <div class="relative max-w-md mx-auto mb-8">
+                <input type="number" id="budgetInput" placeholder="Masukkan nominal (Contoh: 100000)" 
+                    class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-white/30 transition text-lg font-bold">
+                <button onclick="handleSmartSearch()" class="absolute right-2 top-2 bg-white text-black h-12 w-12 rounded-xl flex items-center justify-center hover:bg-silver-primary transition">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <div id="searchResult" class="text-center"></div>
+        </div>
+    </section>
+
+    <!-- Kalkulator Buyback -->
+    <section id="kalkulator" class="py-20 px-6 bg-white/[0.02]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold mb-4 silver-text italic">Kalkulator Buyback</h2>
+                <p class="text-white/50 max-w-2xl mx-auto">Estimasi nilai pencairan aset perak Anda berdasarkan harga buyback terbaru.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto items-center">
+                <div class="reveal">
+                    <div class="glass-container p-8 space-y-6">
+                        <div>
+                            <label class="block text-sm font-bold text-white/60 mb-2">Pilih Produk</label>
+                            <select id="buybackProduct" onchange="calculateBuyback()" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-white/30">
+                                <option value="">Pilih Aset Anda</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-white/60 mb-2">Jumlah Gram/Keping</label>
+                            <input type="number" id="buybackQuantity" oninput="calculateBuyback()" placeholder="0" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-white/30">
+                        </div>
+                        <div id="buybackResult" class="p-6 rounded-2xl bg-white/5 border border-white/10 text-center min-h-[100px] flex flex-col justify-center italic">
+                            <p class="text-white/30 text-sm">Hasil kalkulasi akan muncul di sini</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reveal delay-200">
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+                                <i data-lucide="zap" class="w-6 h-6 silver-text"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1 italic">Instan & Transparan</h4>
+                                <p class="text-sm text-white/40 leading-relaxed">Nilai buyback kami update secara real-time mengikuti pergerakan pasar komoditas global.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+                                <i data-lucide="shield-check" class="w-6 h-6 silver-text"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1 italic">Jaminan Keamanan</h4>
+                                <p class="text-sm text-white/40 leading-relaxed">Setiap transaksi buyback diproses dengan verifikasi kadar murni menggunakan XRF Scanner jika diperlukan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold mb-10 text-center silver-text italic">Pertanyaan Umum</h2>
+            <div class="space-y-4">
+                <div class="glass-container overflow-hidden reveal">
+                    <button onclick="toggleFAQ(this)" class="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-white/5 transition">
+                        <span class="font-bold italic">Apakah perak bisa dijual kembali di Perakin?</span>
+                        <i data-lucide="plus" class="w-5 h-5 text-white/40"></i>
+                    </button>
+                    <div class="faq-content hidden px-8 pb-6 text-sm text-white/50 leading-relaxed">
+                        Tentu. Kami memberikan jaminan buyback untuk semua produk yang dibeli melalui Perakin maupun produk perak murni lainnya yang memenuhi kriteria kadar minimal 999.
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="glass-container overflow-hidden reveal">
+                    <button onclick="toggleFAQ(this)" class="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-white/5 transition">
+                        <span class="font-bold italic">Berapa biaya pengiriman perak?</span>
+                        <i data-lucide="plus" class="w-5 h-5 text-white/40"></i>
+                    </button>
+                    <div class="faq-content hidden px-8 pb-6 text-sm text-white/50 leading-relaxed">
+                        Biaya pengiriman bervariasi tergantung lokasi. Kami menggunakan ekspedisi terpercaya dengan asuransi penuh untuk menjamin keamanan aset Anda sampai di tujuan.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="glass-morphism mt-20 py-16 px-6">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
-            <div class="md:col-span-2">
-                <h4 class="text-3xl font-brand text-white mb-4">PERAKIN</h4>
-                <p class="text-sm text-dove-grey mb-6 max-w-sm">Platform investasi perak fisik terpercaya, menghubungkan Anda dengan aset safe haven untuk masa depan yang lebih cerah.</p>
-                <div class="flex gap-4 justify-center md:justify-start">
-                    <a href="#" class="w-10 h-10 glass-morphism rounded-full flex items-center justify-center hover:bg-silver/20 transition-all"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                    <a href="https://wa.me/6289512241234" target="_blank" class="w-10 h-10 glass-morphism rounded-full flex items-center justify-center hover:bg-silver/20 transition-all"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+    <footer class="py-12 px-6 border-t border-white/10">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+            <div class="col-span-2">
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-white to-silver-dark flex items-center justify-center font-bold text-black text-xs">PK</div>
+                    <span class="font-bold text-xl tracking-tighter silver-text">PERAKIN</span>
                 </div>
+                <p class="text-white/40 text-sm leading-relaxed max-w-sm italic">
+                    Solusi modern untuk membangun kemandirian finansial melalui aset fisik perak murni. Didirikan di Aceh, melayani Indonesia.
+                </p>
             </div>
             <div>
-                <h5 class="text-xs tracking-widest uppercase text-silver-dark font-semibold mb-6">Menu</h5>
-                <ul class="space-y-3 text-sm text-dove-grey">
-                    <li><a href="#katalog" class="hover:text-white transition-colors">Katalog Produk</a></li>
-                    <li><a href="edukasi.html" class="hover:text-white transition-colors">Edukasi</a></li>
-                    <li><a href="kalkulator.html" class="hover:text-white transition-colors">Kalkulator Buyback</a></li>
+                <h5 class="font-bold mb-6 italic">Navigasi</h5>
+                <ul class="space-y-4 text-sm text-white/40">
+                    <li><a href="katalog.html" class="hover:text-white transition italic">Katalog Produk</a></li>
+                    <li><a href="#" class="hover:text-white transition italic">Cara Investasi</a></li>
+                    <li><a href="#" class="hover:text-white transition italic">Kebijakan Buyback</a></li>
                 </ul>
             </div>
             <div>
-                <h5 class="text-xs tracking-widest uppercase text-silver-dark font-semibold mb-6">Kontak</h5>
-                <ul class="space-y-3 text-sm text-dove-grey">
-                    <li>WhatsApp: 0895-1224-1234</li>
-                    <li>Banda Aceh, Indonesia</li>
+                <h5 class="font-bold mb-6 italic">Kontak</h5>
+                <ul class="space-y-4 text-sm text-white/40 italic">
+                    <li class="flex items-center space-x-3">
+                        <i data-lucide="instagram" class="w-4 h-4"></i>
+                        <span>@perakin.id</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                        <span>Banda Aceh, Indonesia</span>
+                    </li>
                 </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-silver/10 text-center text-xs text-silver-dark">
-            &copy; 2024 PERAKIN. All Rights Reserved.
+        <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 text-center text-[10px] text-white/20 uppercase tracking-[0.2em] font-bold">
+            &copy; <span id="current-year"></span> PERAKIN INDONESIA. ALL RIGHTS RESERVED.
         </div>
     </footer>
 
     <script>
-        // --- CONFIGURATION ---
+        // INISIALISASI ICONS
+        lucide.createIcons();
+
+        // KONFIGURASI SUMBER DATA (GOOGLE SHEETS CSV)
         const KATALOG_URL = 'https://docs.google.com/spreadsheets/d/1lJ9qQktoiBQ_Y7nNb7ox3mICJzFab5UqQ_-U54D0iGg/gviz/tq?tqx=out:csv&sheet=katalog';
-        const WA_NUMBER = '6289512241234';
-        let allProducts = [];
-        let filteredProducts = [];
+        const BUYBACK_URL = 'https://docs.google.com/spreadsheets/d/1lJ9qQktoiBQ_Y7nNb7ox3mICJzFab5UqQ_-U54D0iGg/gviz/tq?tqx=out:csv&sheet=buyback';
 
-        // --- DOM ELEMENTS ---
-        const heroPriceEl = document.getElementById('hero-price');
-        const productGridEl = document.getElementById('product-grid');
-        const loadingMessageEl = document.getElementById('loading-message');
-        const filterCategoryEl = document.getElementById('filter-category');
-        const sortPriceAscEl = document.getElementById('sort-price-asc');
-        const sortPriceDescEl = document.getElementById('sort-price-desc');
+        // State Global
+        window.allProducts = [];
+        window.buybackPrices = [];
 
-        // --- CORE FUNCTIONS ---
-        async function fetchData(url) {
-            console.log("Fetching data from:", url);
+        // Fetch Data
+        async function fetchInitialData() {
             try {
-                const response = await fetch(url);
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const data = await response.text();
-                console.log("Raw CSV data received:", data);
-                return data;
+                const [katalogRes, buybackRes] = await Promise.all([
+                    fetch(KATALOG_URL),
+                    fetch(BUYBACK_URL)
+                ]);
+
+                const katalogCsv = await katalogRes.text();
+                const buybackCsv = await buybackRes.text();
+
+                // Parsing CSV (Simple Parser)
+                const parseCSV = (csv) => {
+                    const lines = csv.split('\n');
+                    if (lines.length === 0) return [];
+                    const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim());
+                    
+                    return lines.slice(1).map(line => {
+                        const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/"/g, '').trim());
+                        const obj = {};
+                        headers.forEach((header, i) => {
+                            obj[header] = values[i];
+                        });
+                        return obj;
+                    }).filter(item => item[headers[0]]);
+                };
+
+                window.allProducts = parseCSV(katalogCsv);
+                window.buybackPrices = parseCSV(buybackCsv);
+
+                renderMinPrice();
+                populateBuybackDropdown();
             } catch (error) {
-                console.error('Fetch error:', error);
-                loadingMessageEl.textContent = 'Gagal memuat data. Silakan refresh halaman.';
-                return null;
+                console.error('Error fetching data:', error);
+                document.getElementById('minPrice').textContent = "Server Error";
             }
         }
 
-        function parseCSV(csvText) {
-            console.log("Parsing CSV...");
-            const lines = csvText.trim().split('\n');
-            const headers = lines[0].match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g).map(h => h.trim().replace(/"/g, ''));
-            console.log("Parsed Headers:", headers);
+        // Render Harga Terendah (Diambil dari kolom Price di Sheet Katalog)
+        function renderMinPrice() {
+            if (window.allProducts.length === 0) return;
             
-            const rows = lines.slice(1);
-            const parsedData = rows.map(line => {
-                const values = [];
-                let current = '';
-                let inQuotes = false;
-                for (let i = 0; i < line.length; i++) {
-                    const char = line[i];
-                    if (char === '"') {
-                        inQuotes = !inQuotes;
-                    } else if (char === ',' && !inQuotes) {
-                        values.push(current.trim());
-                        current = '';
-                    } else {
-                        current += char;
-                    }
-                }
-                values.push(current.trim()); // Add the last value
+            // Kolom ke-8 adalah 'Price'. Kita cari harga numerik terendah.
+            const prices = window.allProducts
+                .map(p => {
+                    const cleanPrice = p.Price ? p.Price.replace(/[^0-9]/g, '') : null;
+                    return cleanPrice ? parseInt(cleanPrice) : null;
+                })
+                .filter(p => p !== null && p > 0);
 
-                const obj = {};
-                headers.forEach((header, index) => {
-                    obj[header.trim()] = values[index] ? values[index].trim().replace(/"/g, '') : '';
-                });
-                obj.price = parseInt(obj.price, 10) || 0;
-                obj.weight = parseFloat(obj.weight) || 0;
-                return obj;
-            });
-            console.log("Successfully parsed data:", parsedData);
-            return parsedData;
-        }
-        
-        function formatRupiah(amount) {
-            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(amount);
-        }
-        
-        // --- RENDERING FUNCTIONS ---
-        function renderHeroPrice(products) {
-            console.log("Rendering hero price...");
-            const granules = products.filter(p => p.model && p.model.toLowerCase() === 'granule');
-            if (granules.length > 0) {
-                const cheapest = granules.reduce((min, p) => p.price < min.price ? p : min);
-                heroPriceEl.classList.remove('skeleton');
-                heroPriceEl.textContent = formatRupiah(cheapest.price);
-                console.log("Hero price set to:", formatRupiah(cheapest.price));
-            } else {
-                console.log("No 'Granule' products found for hero price.");
+            if (prices.length > 0) {
+                const min = Math.min(...prices);
+                document.getElementById('minPrice').textContent = `Rp ${min.toLocaleString('id-ID')}`;
             }
         }
 
-        function renderProducts(products) {
-            console.log("Rendering products...");
-            productGridEl.innerHTML = '';
-            if (products.length === 0) {
-                productGridEl.innerHTML = '<p class="col-span-full text-center text-dove-grey">Tidak ada produk yang ditemukan.</p>';
+        // Isi Dropdown Buyback dari Sheet Katalog
+        function populateBuybackDropdown() {
+            const select = document.getElementById('buybackProduct');
+            if (!select) return;
+            
+            window.allProducts.forEach(product => {
+                const option = document.createElement('option');
+                option.value = product.Name;
+                option.textContent = product.Name;
+                select.appendChild(option);
+            });
+        }
+
+        // Kalkulasi Buyback Berdasarkan Sheet Buyback
+        function calculateBuyback() {
+            const productName = document.getElementById('buybackProduct').value;
+            const quantity = parseInt(document.getElementById('buybackQuantity').value);
+            const resultDiv = document.getElementById('buybackResult');
+
+            if (!productName || !quantity || quantity <= 0) {
+                resultDiv.innerHTML = `<p class="text-white/30 text-sm">Hasil kalkulasi akan muncul di sini</p>`;
                 return;
             }
-            productGridEl.innerHTML = products.map(product => `
-                <div class="premium-card glass-morphism p-6 rounded-2xl cursor-pointer group" onclick="openModal('${product.name}')">
-                    <div class="relative mb-4">
-                        <img src="${product.thumbnail}" alt="${product.name}" class="w-full h-48 object-contain rounded-xl bg-charcoal p-4 group-hover:scale-105 transition-transform duration-300">
-                        ${product.label ? `<span class="absolute top-2 right-2 bg-silver text-matte-black text-xs font-bold px-3 py-1 rounded-full">${product.label}</span>` : ''}
-                    </div>
-                    <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-silver transition-colors">${product.name}</h3>
-                    <p class="text-sm text-silver-dark mb-4">${product.category} - ${product.weight}g</p>
-                    <p class="text-xl font-brand text-silver">${formatRupiah(product.price)}</p>
-                </div>
-            `).join('');
-        }
 
-        function populateCategoryFilter(products) {
-            const categories = [...new Set(products.map(p => p.category).filter(Boolean))];
-            filterCategoryEl.innerHTML = '<option value="">Semua Kategori</option>' + 
-                categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
-        }
-        
-        // --- MODAL & WA ---
-        function openModal(productName) {
-            const product = allProducts.find(p => p.name === productName);
-            if (!product) return;
+            // Cari di sheet Buyback yang kolomnya: Nama Produk, Gramasi, Harga Buyback
+            const buybackItem = window.buybackPrices.find(item => item["Nama Produk"] === productName);
 
-            document.getElementById('modal-image').src = product.thumbnail;
-            document.getElementById('modal-name').textContent = product.name;
-            document.getElementById('modal-details').textContent = `${product.weight}g / ${product.purity} | ${product.brand}`;
-            document.getElementById('modal-description').textContent = product.description;
-
-            const isReady = product.availability && product.availability.toLowerCase() === 'ready';
-            const message = isReady 
-                ? `Halo Perakin, saya tertarik dengan produk:\n**${product.name}**\nHarga: ${formatRupiah(product.price)}\n\nApakah masih tersedia?`
-                : `Halo Perakin, saya tertarik dengan produk:\n**${product.name}**\n\nStatusnya tidak tersedia. Mohon info kapan kembali ada.`;
-            
-            document.getElementById('modal-actions').innerHTML = `
-                <a href="https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}" target="_blank" class="w-full py-3 bg-silver text-matte-black font-bold rounded-xl hover:bg-dove-grey transition-all text-center">
-                    ${isReady ? 'Beli via WhatsApp' : 'Tanyakan Detail'}
-                </a>
-            `;
-            
-            document.getElementById('product-modal').classList.remove('opacity-0', 'pointer-events-none');
-        }
-
-        function closeModal() {
-            document.getElementById('product-modal').classList.add('opacity-0', 'pointer-events-none');
-        }
-
-        // --- FILTER & SORT LOGIC ---
-        function applyFilters() {
-            const selectedCategory = filterCategoryEl.value;
-            filteredProducts = allProducts.filter(product => {
-                return selectedCategory === '' || product.category === selectedCategory;
-            });
-            renderProducts(filteredProducts);
-        }
-
-        function sortProducts(order) {
-            filteredProducts.sort((a, b) => {
-                return order === 'asc' ? a.price - b.price : b.price - a.price;
-            });
-            renderProducts(filteredProducts);
-        }
-
-        // --- INITIALIZATION ---
-        async function init() {
-            const katalogCSV = await fetchData(KATALOG_URL);
-            if (katalogCSV) {
-                allProducts = parseCSV(katalogCSV);
-                if(allProducts.length > 0) {
-                    filteredProducts = [...allProducts];
-                    loadingMessageEl.style.display = 'none';
-                    renderHeroPrice(allProducts);
-                    populateCategoryFilter(allProducts);
-                    renderProducts(filteredProducts);
-                } else {
-                    loadingMessageEl.textContent = 'Tidak ada produk yang ditemukan di data.';
-                }
+            if (buybackItem) {
+                const pricePerGram = parseInt(buybackItem["Harga Buyback"]);
+                const total = pricePerGram * quantity;
+                resultDiv.innerHTML = `
+                    <p class="text-xs text-white/40 mb-1 uppercase tracking-widest font-bold">Estimasi Dana Diterima:</p>
+                    <p class="text-2xl font-bold silver-text italic">Rp ${total.toLocaleString('id-ID')}</p>
+                    <p class="text-[10px] text-green-500 mt-2 font-bold italic">HARGA FINAL BUYBACK TERKONFIRMASI</p>
+                `;
+            } else {
+                resultDiv.innerHTML = `<p class="text-red-400 text-xs italic">Data harga buyback item ini belum tersedia.</p>`;
             }
         }
 
-        // --- EVENT LISTENERS ---
-        filterCategoryEl.addEventListener('change', applyFilters);
-        sortPriceAscEl.addEventListener('click', () => sortProducts('asc'));
-        sortPriceDescEl.addEventListener('click', () => sortProducts('desc'));
-        
-        // Start everything
-        document.addEventListener('DOMContentLoaded', init);
-        window.addEventListener('load', () => lucide.createIcons());
+        // Smart Search Logic (Budget)
+        function handleSmartSearch() {
+            const budget = parseInt(document.getElementById('budgetInput').value);
+            const resultDiv = document.getElementById('searchResult');
+            
+            if (!budget) return;
+
+            // Cari produk yang harganya <= budget
+            const affordable = window.allProducts.filter(p => {
+                const pPrice = parseInt(p.Price?.replace(/[^0-9]/g, ''));
+                return pPrice <= budget;
+            });
+
+            if (affordable.length > 0) {
+                // Urutkan paling mahal yang masih masuk budget
+                affordable.sort((a, b) => {
+                    return parseInt(b.Price.replace(/[^0-9]/g, '')) - parseInt(a.Price.replace(/[^0-9]/g, ''));
+                });
+
+                const bestMatch = affordable[0];
+                resultDiv.innerHTML = `
+                    <div class="mt-6 p-6 rounded-2xl bg-white/5 border border-white/10 inline-block animate-bounce">
+                        <p class="text-sm text-white/50 mb-1 italic">Rekomendasi terbaik untuk Anda:</p>
+                        <h4 class="text-xl font-bold silver-text italic">${bestMatch.Name}</h4>
+                        <p class="text-lg font-bold">Rp ${parseInt(bestMatch.Price.replace(/[^0-9]/g, '')).toLocaleString('id-ID')}</p>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `<p class="mt-6 text-white/40 italic text-sm">Maaf, budget belum mencukupi untuk item terkecil saat ini.</p>`;
+            }
+        }
+
+        // UI Interactions
+        function toggleFAQ(btn) {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('i');
+            content.classList.toggle('hidden');
+            icon.setAttribute('data-lucide', content.classList.contains('hidden') ? 'plus' : 'minus');
+            lucide.createIcons();
+        }
+
+        // Scroll Reveal
+        window.onload = () => {
+            fetchInitialData();
+            
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        };
     </script>
 </body>
 </html>
